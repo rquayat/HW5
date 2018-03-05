@@ -1,0 +1,6 @@
+alter table "MS3200089"."JOBLEADS" drop column "COLUMN3"
+
+alter table "MS3200089"."JOBLEADS" add column "LOCATION"
+
+ALTER TABLE JOBLEADS
+    MODIFY LEAD_ID INTEGER(4);
