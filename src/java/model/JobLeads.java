@@ -22,7 +22,7 @@ public class JobLeads {
         this.contact_date = "";
     
      }
-    public JobLeads(int lead_id, String company, String position, String location, String contact_name, String contact_method, String notes, String contact_date) {
+    public JobLeads( int lead_id, String company, String position, String location, String contact_name, String contact_method, String notes, String contact_date) {
         this.lead_id = lead_id;
         this.company = company;
         this.position = position;
