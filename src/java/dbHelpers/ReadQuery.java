@@ -50,17 +50,21 @@ public class ReadQuery {
         }
     }
     
+    
+    // SOLID CONNECTION TO DATABASE SHOULD BE ESTABLISHED AFTER ABOVE IS RUN!
+    
+    
     public void doRead() {
         try {
-            String query ="Select * from jobleads";
-            PreparedStatement ps = conn.prepareStatement (query);
+            String query ="SELECT * FROM jobleads";
+            PreparedStatement ps = conn.prepareStatement(query);
             this.results = ps.executeQuery();
         } catch (SQLException ex) {
             Logger.getLogger(ReadQuery.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    public String GetHTMLtable() {
+    public String getHTMLTable() {
         String table = "";
             table += "<table border=1>";
         
@@ -70,46 +74,47 @@ public class ReadQuery {
             
             while (this.results.next()) {
                 JobLeads lead = new JobLeads();
-                lead.setLead_id(this.results.getInt("lead_id"));
-                lead.setCompany(this.results.getString("company"));
-                lead.setPosition(this.results.getString("position"));
-                lead.setLocation(this.results.getString("location"));
-                lead.setContact_name(this.results.getString("contact_name"));
-                lead.setContact_method(this.results.getString("contact_method"));
-                lead.setNotes(this.results.getString("notes"));
-                lead.setContact_date(this.results.getString("contact_date"));
+                lead.setlead_id(this.results.getInt("lead_id"));
+                lead.setcompany(this.results.getString("company"));
+                lead.setposition(this.results.getString("position"));
+                lead.setlocation(this.results.getString("location"));
+                lead.setcontact_name(this.results.getString("contact_name"));
+                lead.setcontact_method(this.results.getString("contact_method"));
+                lead.setnotes(this.results.getString("notes"));
+                lead.setcontact_date(this.results.getString("contact_date"));
                 
                 table += "<tr>";
+                
                 table += "<td>";
-                table += lead.getLead_id();
+                table += lead.getlead_id();
                 table += "</td>";
                 
                 table += "<td>";
-                table += lead.getCompany();
+                table += lead.getcompany();
+                table += "</td>";
+               
+                table += "<td>";
+                table += lead.getposition();
                 table += "</td>";
                 
                 table += "<td>";
-                table += lead.getPosition();
+                table += lead.getlocation();
                 table += "</td>";
                 
                 table += "<td>";
-                table += lead.getLocation();
+                table += lead.getcontact_name();
                 table += "</td>";
                 
                 table += "<td>";
-                table += lead.getContact_name();
+                table += lead.getcontact_method();
                 table += "</td>";
                 
                 table += "<td>";
-                table += lead.getContact_method();
+                table += lead.getnotes();
                 table += "</td>";
                 
                 table += "<td>";
-                table += lead.getNotes();
-                table += "</td>";
-                
-                table += "<td>";
-                table += lead.getContact_date();
+                table += lead.getcontact_date();
                 table += "</td>";
                 table += "</tr>";
                 
@@ -125,7 +130,6 @@ public class ReadQuery {
     }
 
 
-    public String getHTMLTable() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
+    
 }

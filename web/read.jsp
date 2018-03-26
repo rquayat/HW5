@@ -14,5 +14,9 @@
         <h1>Ryan's Job Leads</h1>
         <%= table %>
         
+        <br><br>
+        <a href="add">Add a New Job Lead</a>
+        
+        
     </body>
 </html>

@@ -35,67 +35,67 @@ public class JobLeads {
         
     }
 
-    public int getLead_id() {
+    public int getlead_id() {
         return lead_id;
     }
 
-    public void setLead_id(int lead_id) {
+    public void setlead_id(int lead_id) {
         this.lead_id = lead_id;
     }
 
-    public String getCompany() {
+    public String getcompany() {
         return company;
     }
 
-    public void setCompany(String company) {
+    public void setcompany(String company) {
         this.company = company;
     }
 
-    public String getPosition() {
+    public String getposition() {
         return position;
     }
 
-    public void setPosition(String position) {
+    public void setposition(String position) {
         this.position = position;
     }
 
-    public String getLocation() {
+    public String getlocation() {
         return location;
     }
 
-    public void setLocation(String location) {
+    public void setlocation(String location) {
         this.location = location;
     }
 
-    public String getContact_name() {
+    public String getcontact_name() {
         return contact_name;
     }
 
-    public void setContact_name(String contact_name) {
+    public void setcontact_name(String contact_name) {
         this.contact_name = contact_name;
     }
 
-    public String getContact_method() {
+    public String getcontact_method() {
         return contact_method;
     }
 
-    public void setContact_method(String contact_method) {
+    public void setcontact_method(String contact_method) {
         this.contact_method = contact_method;
     }
 
-    public String getNotes() {
+    public String getnotes() {
         return notes;
     }
 
-    public void setNotes(String notes) {
+    public void setnotes(String notes) {
         this.notes = notes;
     }
 
-    public String getContact_date() {
+    public String getcontact_date() {
         return contact_date;
     }
 
-    public void setContact_date(String contact_date) {
+    public void setcontact_date(String contact_date) {
         this.contact_date = contact_date;
         
         
