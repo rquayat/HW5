@@ -56,7 +56,7 @@ public class ReadQuery {
     
     public void doRead() {
         try {
-            String query ="SELECT * FROM jobleads";
+            String query ="SELECT * FROM jobleads ORDER BY lead_id asc";
             PreparedStatement ps = conn.prepareStatement(query);
             this.results = ps.executeQuery();
         } catch (SQLException ex) {
@@ -66,7 +66,7 @@ public class ReadQuery {
     
     public String getHTMLTable() {
         String table = "";
-            table += "<table border=1>";
+            table += "<table>";
         
         
         try {
@@ -83,45 +83,45 @@ public class ReadQuery {
                 lead.setnotes(this.results.getString("notes"));
                 lead.setcontact_date(this.results.getString("contact_date"));
                 
-                table += "<tr>";
+                table += "<tr class='.table'>";
                 
-                table += "<td>";
+                table += "<td class='.td'>";
                 table += lead.getlead_id();
                 table += "</td>";
                 
-                table += "<td>";
+                table += "<td class='.td'>";
                 table += lead.getcompany();
                 table += "</td>";
                
-                table += "<td>";
+                table += "<td class='.td'>";
                 table += lead.getposition();
                 table += "</td>";
                 
-                table += "<td>";
+                table += "<td class='.td'>";
                 table += lead.getlocation();
                 table += "</td>";
                 
-                table += "<td>";
+                table += "<td class='.td'>";
                 table += lead.getcontact_name();
                 table += "</td>";
                 
-                table += "<td>";
+                table += "<td class='.td'>";
                 table += lead.getcontact_method();
                 table += "</td>";
                 
-                table += "<td>";
+                table += "<td class='.td'>";
                 table += lead.getnotes();
                 table += "</td>";
                 
-                table += "<td>";
+                table += "<td class='.td'>";
                 table += lead.getcontact_date();
                 table += "</td>";
-                table += "</tr>";
                 
-                table += "<td>";
-                table += "<a href=delete?lead_id=" + lead.getlead_id() + "> Delete <a/>";
+                
+                table += "<td class='.td'>";
+                table += "<a href=update?lead_id=" + lead.getlead_id() + "> Update </a>" + "<a href=delete?lead_id=" + lead.getlead_id() + "> Delete <a/>";
                 table += "</td>";
-                
+                table += "</tr>";
             }
             
             

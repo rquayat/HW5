@@ -5,7 +5,7 @@
  */
 package controller;
 
-import dbHelpers.DeleteQuery;
+import dbHelpers.ReadRecord;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -14,13 +14,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.JobLeads;
 
 /**
  *
  * @author rquayat
  */
-@WebServlet(name = "DeleteServlet", urlPatterns = {"/delete"})
-public class DeleteServlet extends HttpServlet {
+@WebServlet(name = "UpdateFormServlet", urlPatterns = {"/update"})
+public class UpdateFormServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +40,10 @@ public class DeleteServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DeleteServlet</title>");            
+            out.println("<title>Servlet UpdateFormServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet DeleteServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet UpdateFormServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,9 +61,9 @@ public class DeleteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //Pass execution on to doPost
+        doPost (request, response);
         
-        //pass execution on to doPost
-        doPost(request, response);
     }
 
     /**
@@ -76,18 +77,25 @@ public class DeleteServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // get the lead_id
+        //get lead_id
         int lead_id = Integer.parseInt(request.getParameter("lead_id"));
-        //create a deleteQuery object
-        DeleteQuery dq = new DeleteQuery();
-        //use deleteQuery to delete the object
-        dq.doDelete(lead_id);
-       
-        //pass execution on to the ReadServlet
-        String url = "/read";
+        
+        //create a ReadRecord class
+        ReadRecord rr = new ReadRecord(lead_id);
+        
+        //use ReadRecord to get the lead data
+        rr.doRead();
+        JobLeads lead = rr.getlead();
+        //pass friend and conrtrol to updateForm.jsp
+        request.setAttribute("lead", lead);
+        
+        String url = "/updateForm.jsp";
         
         RequestDispatcher dispatcher = request.getRequestDispatcher(url);
-        dispatcher.forward (request, response);
+        dispatcher.forward(request, response);
+        
+        
+        
     }
 
     /**

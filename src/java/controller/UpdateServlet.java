@@ -5,22 +5,22 @@
  */
 package controller;
 
-import dbHelpers.DeleteQuery;
+import dbHelpers.UpdateQuery;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.JobLeads;
 
 /**
  *
  * @author rquayat
  */
-@WebServlet(name = "DeleteServlet", urlPatterns = {"/delete"})
-public class DeleteServlet extends HttpServlet {
+@WebServlet(name = "UpdateServlet", urlPatterns = {"/updatelead"})
+public class UpdateServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +39,10 @@ public class DeleteServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DeleteServlet</title>");            
+            out.println("<title>Servlet UpdateServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet DeleteServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet UpdateServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,8 +60,6 @@ public class DeleteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        //pass execution on to doPost
         doPost(request, response);
     }
 
@@ -76,18 +74,36 @@ public class DeleteServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // get the lead_id
-        int lead_id = Integer.parseInt(request.getParameter("lead_id"));
-        //create a deleteQuery object
-        DeleteQuery dq = new DeleteQuery();
-        //use deleteQuery to delete the object
-        dq.doDelete(lead_id);
-       
-        //pass execution on to the ReadServlet
-        String url = "/read";
         
-        RequestDispatcher dispatcher = request.getRequestDispatcher(url);
-        dispatcher.forward (request, response);
+    //get the form data and set up a lead object
+        int lead_id = Integer.parseInt(request.getParameter("lead_id"));
+        String company = request.getParameter("company");
+        String position = request.getParameter("position");
+        String location = request.getParameter("location");
+        String contact_name = request.getParameter("contactName");
+        String contact_method = request.getParameter("contactMethod");
+        String notes = request.getParameter("notes");
+        String contact_date = request.getParameter("contactDate");
+        
+        JobLeads lead = new JobLeads();
+        lead.setlead_id(lead_id);
+        lead.setcompany(company);
+        lead.setposition(position);
+        lead.setlocation(location);
+        lead.setcontact_name(contact_name);
+        lead.setcontact_method(contact_method);
+        lead.setnotes(notes);
+        lead.setcontact_date(contact_date);
+       
+    //create an UpdateQuery object and use it to update the lead
+    UpdateQuery uq = new UpdateQuery();
+    uq.doUpdate(lead);
+    
+    //pass control to the ReadServlet
+    String url = "read/";
+        
+                
+        
     }
 
     /**

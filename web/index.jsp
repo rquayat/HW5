@@ -4,6 +4,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="WEB_INF/newcss.css">
         <title>My Job Leads</title>
     </head>
     <body>

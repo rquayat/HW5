@@ -81,20 +81,20 @@ public class AddServlet extends HttpServlet {
         String company = request.getParameter("company");
         String position = request.getParameter("position");
         String location = request.getParameter("location");
-        String contact_name = request.getParameter("contact_name");
-        String contact_method = request.getParameter("contact_method");
+        String contact_name = request.getParameter("contactName");
+        String contact_method = request.getParameter("contactMethod");
         String notes = request.getParameter("notes");
-        String contact_date = request.getParameter("contact_date");
+        String contact_date = request.getParameter("contactDate");
         
         //set up a friend object
-        JobLeads joblead = new JobLeads();
-        joblead.setcompany(company);
-        joblead.setposition(position);
-        joblead.setlocation(location);
-        joblead.setcontact_name(contact_name);
-        joblead.setcontact_method(contact_method);
-        joblead.setnotes(notes);
-        joblead.setcontact_date(contact_date);
+        JobLeads lead = new JobLeads();
+        lead.setcompany(company);
+        lead.setposition(position);
+        lead.setlocation(location);
+        lead.setcontact_name(contact_name);
+        lead.setcontact_method(contact_method);
+        lead.setnotes(notes);
+        lead.setcontact_date(contact_date);
              
         //set up an addQuery object
         
@@ -102,7 +102,7 @@ public class AddServlet extends HttpServlet {
         
         //pass the joblead to addQuery to add to the database
         
-        aq.doAdd(joblead);
+        aq.doAdd(lead);
         
         //pass excecution control to the ReadServlet
         String url = "/read";

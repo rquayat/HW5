@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package dbHelpers;
 
 import java.io.IOException;
@@ -24,7 +20,7 @@ public class AddQuery {
     private Connection conn;
     
     public AddQuery() {
-         Properties props = new Properties();
+        Properties props = new Properties();
         InputStream instr = getClass().getResourceAsStream("dbConn.properties");
         try {
             props.load(instr);
@@ -54,17 +50,17 @@ public class AddQuery {
         
     }
     
-    public void doAdd (JobLeads joblead) {
+    public void doAdd (JobLeads lead) {
         try {
             String query = "INSERT INTO jobleads (company, position, location, contact_name, contact_method, notes, contact_date) VALUES (?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1, joblead.getcompany());
-            ps.setString(2, joblead.getposition());
-            ps.setString(3, joblead.getlocation());
-            ps.setString(4, joblead.getcontact_name());
-            ps.setString(5, joblead.getcontact_method());
-            ps.setString(6, joblead.getnotes());
-            ps.setString(7, joblead.getcontact_date());
+            ps.setString(1, lead.getcompany());
+            ps.setString(2, lead.getposition());
+            ps.setString(3, lead.getlocation());
+            ps.setString(4, lead.getcontact_name());
+            ps.setString(5, lead.getcontact_method());
+            ps.setString(6, lead.getnotes());
+            ps.setString(7, lead.getcontact_date());
             
             
             ps.executeUpdate();
